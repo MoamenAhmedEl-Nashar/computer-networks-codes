@@ -116,7 +116,7 @@ string alter(int index, string transmitted_message)
 	}
 	else
 	{
-		str[index] == '0';
+		str[index] = '0';
 	}
 	return str;
 }
