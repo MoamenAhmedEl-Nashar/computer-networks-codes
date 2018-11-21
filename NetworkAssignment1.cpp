@@ -8,9 +8,10 @@ using namespace std;
  *                          Functions Prototybes                               *
  *******************************************************************************/
 
-string xor (string str1, string str2);
-string generator (string message, string polynomial);
-void verify (string message, string polynomial);
+string xor2 (string str1, string str2);
+string generator (string message, string polynomial); // used at sender
+void verify (string message, string polynomial);  //used at reciever
+string alter(string transmitted_message);
 
 /*******************************************************************************
  *                             main function                                   *
@@ -72,7 +73,7 @@ string generator (string message, string polynomial)
 	{
 		if(str[0] != '0')    /* if the first bit is zero, the str will be XORed with zeros so the output will be the same */
 		{                    /* if the first bit is 1, the str will be XORed with the polynomial */
-			str = xor(str,polynomial);
+			str = xor2(str,polynomial);
 		}
 		str.erase(0,1);     /* delete the first bit as it will be always zero */
 		str+=message[i];    /* get the next bit of message */
@@ -80,7 +81,7 @@ string generator (string message, string polynomial)
 	/* finally there will be another XOR */
 	if(str[0] !='0')   /* if the first bit isn't zero */
 	{                  /* if it zero the str will be the same */
-		str = xor(str,polynomial);
+		str = xor2(str,polynomial);
 	}
 	str.erase(0,1);  /* delete the first bit as it will be always zero */
 
@@ -88,7 +89,7 @@ string generator (string message, string polynomial)
 }
 
 /* XOR tow strings and get the result,    both strings should be same size */
-string xor (string str1, string str2)
+string xor2 (string str1, string str2)
 {
 	string result;
 	for(int i=0; i <str1.length(); i++)
@@ -109,4 +110,18 @@ void verify (string message, string polynomial)
 		cout<<endl<<"	message is correct";
 	else
 		cout<<endl<<"	message is not correct";
+}
+/*change 1 bit from transmitted message (output from generator at sender)*/
+string alter(string transmitted_message)
+{
+	string str= transmitted_message;
+	if (transmitted_message[0] == '0')
+	{
+		str[0] = '1';
+	}
+	else
+	{
+		str[0] == '0';
+	}
+	return str;
 }
