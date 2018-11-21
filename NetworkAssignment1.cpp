@@ -12,7 +12,7 @@ using namespace std;
 string xor2 (string str1, string str2);
 string generator (string message, string polynomial); // used at sender
 void verify (string message, string polynomial);  //used at reciever
-string alter(string transmitted_message);
+string alter(int index,string transmitted_message);
 
 /*******************************************************************************
  *                             main function                                   *
@@ -21,6 +21,7 @@ string alter(string transmitted_message);
 int main ()
 {
 	/*read message and polynomial generator*/
+	int index;
 	ifstream input("input.txt");
 	string message, polynomial, result;
 	input>>message;
@@ -33,7 +34,8 @@ int main ()
 	cout << endl << "transmitted message ---> " << message + result;
 	/*generator(input file)-> alter -> verifier case*/
 	ofstream error("error_output.txt");
-	result = alter(generator(message, polynomial));  /* get the result of CRC */
+	cin>>index;
+	result = alter(index,generator(message, polynomial));  /* get the result of CRC */
 	error << message+result;
 	verify(message+result,polynomial);
 	cout << endl << "transmitted message ---> " << message + result<<"\n";
@@ -102,10 +104,10 @@ void verify (string message, string polynomial)
 		cout<<endl<<"	message is not correct";
 }
 /*change 1 bit from transmitted message (output from generator at sender)*/
-string alter(string transmitted_message)
+string alter(int index,string transmitted_message)
 {
 	string str= transmitted_message;
-	if (transmitted_message[0] == '0')
+	if (transmitted_message[index] == '0')
 	{
 		str[0] = '1';
 	}
