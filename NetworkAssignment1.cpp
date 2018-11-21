@@ -31,9 +31,11 @@ int main ()
 	result = generator(message, polynomial);  /* get the result of CRC */
 	correct << message+result;
 	verify(message + result, polynomial);
-	cout << endl << "transmitted message ---> " << message + result;
+	cout << endl << "transmitted message ---> " << message + result<<"\n";
 	/*generator(input file)-> alter -> verifier case*/
 	ofstream error("error_output.txt");
+	//The index >=0 && index < length of the message
+	cout << "The index of the element to alter is: ";
 	cin>>index;
 	result = alter(index,generator(message, polynomial));  /* get the result of CRC */
 	error << message+result;
@@ -109,11 +111,11 @@ string alter(int index,string transmitted_message)
 	string str= transmitted_message;
 	if (transmitted_message[index] == '0')
 	{
-		str[0] = '1';
+		str[index] = '1';
 	}
 	else
 	{
-		str[0] == '0';
+		str[index] == '0';
 	}
 	return str;
 }
