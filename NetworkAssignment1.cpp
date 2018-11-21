@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -19,36 +20,25 @@ string alter(string transmitted_message);
 
 int main ()
 {
-	string message, polynomial, result, command;
-	cout<<"Enter the message"<<endl<<"	";
-	cin>>message;
-	cout<<endl<<"Enter the generator"<<endl<<"	";
-	cin>>polynomial;
-	cin.ignore();
-	while (1)
-	{
-		cout<<endl<<"Command: ";
-		getline(cin,command);
-		result = generator(message, polynomial);  /* get the result of CRC */
-		if(command == "generator < file | verifier")  /* i think this should be changed if we will read from file */
-		{
-			cout<<endl<<"	transmitted message ---> "<<message+result;
-			verify(message+result,polynomial);
-		}
-		else 
-		{
-			int pos;    /* the number of bit that should be toggle */
-			cout<<endl<<"	transmitted message ---> "<<message+result;
-			pos=stoi(command.substr( 25, 25-command.rfind("|")-1));  /* i think this should be changed if we will read from file */
-			if(message[pos]=='0')      /* if the bit that we want to toggle is zero, it should be 1*/
-				message.replace(pos,1,"1");
-			else   /* if the bit that we want to toggle isn't zero, it should be 0 */
-				message.replace(pos,1,"0");
-			verify(message+result,polynomial);
-		}
-		cout<<endl;
-	}
-
+	/*read message and polynomial generator*/
+	ifstream input("input.txt");
+	string message, polynomial, result;
+	input>>message;
+	input>>polynomial;
+	/*generator(input file)-> verifier case*/
+	ofstream correct("correct_output.txt");
+	result = generator(message, polynomial);  /* get the result of CRC */
+	correct << message+result;
+	verify(message + result, polynomial);
+	cout << endl << "transmitted message ---> " << message + result;
+	/*generator(input file)-> alter -> verifier case*/
+	ofstream error("error_output.txt");
+	result = alter(generator(message, polynomial));  /* get the result of CRC */
+	error << message+result;
+	verify(message+result,polynomial);
+	cout << endl << "transmitted message ---> " << message + result<<"\n";
+		 
+	system("pause");
 	return 0;
 }
 
