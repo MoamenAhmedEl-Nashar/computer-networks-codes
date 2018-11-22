@@ -13,10 +13,14 @@
   9. the error output file contains the wrong transmitted frame and the generator polynomial in the second line .
 
   **example**
-   ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/input.PNG?raw=true)
-   ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/console.PNG?raw=true)
-   ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/correct%20output.PNG?raw=true) 
-   ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/error%20output.PNG?raw=true) 
+
+   1. ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/input.PNG?raw=true)
+
+   2. ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/console.PNG?raw=true)
+
+   3. ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/correct%20output.PNG?raw=true) 
+
+   4. ![alt](https://github.com/MoamenAhmedEl-Nashar/computer-networks-codes/blob/master/screenshots/error%20output.PNG?raw=true) 
 
    
 
